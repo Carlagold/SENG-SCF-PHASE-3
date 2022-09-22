@@ -14,4 +14,4 @@ require "colorize"
 # the lib directory, so if we write code in there (like a 
 # method) it will be accessible to us after the require_all
 # below
-require_all "lib"
+require_all "lib" #HERE

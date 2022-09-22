@@ -3,6 +3,8 @@ set -euo pipefail
 IFS=$'\n\t'
 set -vx
 
+git add .
+git commit -m "this is a commit from my setup file"
 bundle install
 
 # Do any other automated setup that you need to do here

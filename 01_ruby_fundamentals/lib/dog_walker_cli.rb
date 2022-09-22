@@ -1,6 +1,6 @@
 def start_cli
-    puts "Hi there! Welcome to the Dog Walker CLI!".cyan
-  end
+  puts "Hi there! Welcome to the Dog Walker CLI!".cyan
+end
   
   # define a method `print_menu_options` which outlines the user's
   # choices. The choices will be displayed as a numbered list like so:
@@ -21,14 +21,14 @@ def start_cli
   
   # define a `print_dog` method that accepts a dog hash as a parameter
   # and prints out the dog's details that looks like this:
-  =begin
+  # =begin
     
-  Lennon Snow
-    Age: Almost 2
-    Breed: Pomeranian
-    Image URL: https://res.cloudinary.com/dnocv6uwb/image/upload/v1609370267/dakota-and-lennon-square-compressed_hoenfo.jpg
+  # Lennon Snow
+  #   Age: Almost 2
+  #   Breed: Pomeranian
+  #   Image URL: https://res.cloudinary.com/dnocv6uwb/image/upload/v1609370267/dakota-and-lennon-square-compressed_hoenfo.jpg
   
-  =end
+  # =end
   
   
   
