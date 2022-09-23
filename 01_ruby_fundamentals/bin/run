@@ -2,4 +2,9 @@
 
 require_relative "../config/environment"
 
+system('clear')
 start_cli
+loop do 
+    print_menu_options
+    handle_choice
+end
