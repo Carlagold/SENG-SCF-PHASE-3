@@ -15,3 +15,9 @@ require "colorize"
 # method) it will be accessible to us after the require_all
 # below
 require_all "lib" #HERE
+
+# add a method that will reload the lib/dog.rb file so we can 
+# interact with the most recent version without restarting the console
+def reload
+    load "lib/dog.rb"
+end
