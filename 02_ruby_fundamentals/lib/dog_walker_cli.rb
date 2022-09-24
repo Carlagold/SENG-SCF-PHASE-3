@@ -8,6 +8,8 @@ def print_menu_options
   puts "================================"
   puts "  1. List all dogs "
   puts "  2. Add a dog "
+  puts "  3. Feed a dog"
+  puts "  4. Walk a dog "
   puts ""
   puts "Type exit to exit out at anytime"
   puts "================================"
@@ -30,28 +32,15 @@ def ask_for_input
 
   user_input
 end
-
-# ✅ remove the print_dog method. We'll be using the Dog#print method instead
-def print_dog(dog_hash)
-  # js - `${}` ruby - "#{}"
-  puts "#{dog_hash[:name]}".cyan
-  puts "  Age: #{dog_hash[:age]}"
-  puts "  Breed: #{dog_hash[:breed]}"
-  puts "  Image URL: #{dog_hash[:image_url]}"
-end
-
-  
   
   # define a method `list_dogs` that will iterate over an array of
   # dog hashes and call print_dog on each one.
 def list_dogs 
-  $dogs.each do |dog_hash| 
-    print_dog(dog_hash)
+  $dogs.each do |dog| 
+    dog.print
   end
   nil
 end
-
-  
 
 # ✅ Refactor
 # define an `add_dog` method which accepts an array of dog
@@ -73,13 +62,11 @@ def add_dog(dogs)
   puts "What's the Dog's Image Url?  "
   image_url = ask_for_input
 
-  # ✅ Rework the code below to use the Dog class
-  dog_hash = { name: name, age: age, breed: breed, image_url: image_url }
+ dog = Dog.new(name, age, breed, image_url)
 
-  dogs << dog_hash
-  nil
+  dogs << dog
+  dog
 end
-  
 
 # ✅ Add two conditions for walking and feeding (3 or 4)
 def handle_choice
@@ -89,13 +76,15 @@ def handle_choice
     list_dogs
   elsif user_input == "2"
     add_dog($dogs)
+  elsif user_input == "3"
+    feed_dog($dogs)
+  elsif user_input == "4"
+    walk_dog($dogs)
   else
     system('clear')
     puts "I didn't recognizer your command try again".red
   end
 end
-  
-
 
 # ✅ Add a helper method `choose_dog_from_collection` that will:
 #  - accept an array of dog instances as an argument
@@ -108,6 +97,7 @@ end
 
 def choose_dog_from_collection(dogs)
   dogs.each_with_index do |dog, index|
+    puts "#{index+1}. #{dog.name} (#{dog.breed})"
     # ✅ print out a number using each dog's index and its name (breed)
   end
   puts "Type the number associated with the dog you'd like to choose"
@@ -133,8 +123,17 @@ end
 # ✅ Add a `walk_dog` method that will prompt the user to choose
 # which dog to walk. After choosing a dog, invoke the `walk` method
 # on the dog and then `print` it
+def walk_dog(dogs)
+  dog = choose_dog_from_collection(dogs)
+  dog.walk
+  dog.print
+end
 
-
+def feed_dog(dogs)
+  dog = choose_dog_from_collection(dogs)
+  dog.feed
+  dog.print
+end
 
 
 

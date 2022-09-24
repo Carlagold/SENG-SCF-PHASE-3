@@ -8,6 +8,10 @@ require "require_all"
 
 require "colorize"
 
+require "date"
+require "active_support/core_ext/integer/time"
+require "active_support/core_ext/date/calculations"
+
 # When we use `require_all`, the path we pass to it will be 
 # relative to the root path of the project (where the Gemfile 
 # is). In our case, we're loading all of the files inside of 
@@ -18,6 +22,12 @@ require_all "lib" #HERE
 
 # add a method that will reload the lib/dog.rb file so we can 
 # interact with the most recent version without restarting the console
-def reload
+def reload!
     load "lib/dog.rb"
+    load "lib/dogs.rb"
+    load "lib/dog_walker_cli.rb"
+end
+
+def clear 
+    system('clear')
 end
