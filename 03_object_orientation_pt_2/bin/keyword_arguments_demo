@@ -1,0 +1,52 @@
+#!/usr/bin/env ruby
+require "bundler/setup"
+require_relative "../config/environment"
+
+Bundler.require(:default)
+
+class Dog
+  attr_accessor :name, :age, :breed, :image_url
+  def initialize(name:, age:, breed:, image_url:, favorite_treats: nil)
+    @name = name
+    @age = age
+    @breed = breed
+    @image_url = image_url
+    @favorite_treats = favorite_treats
+  end
+end
+
+
+puts <<-CODE
+Try the following: 
+```rb
+@lennon = Dog.new(
+  name: "Lennon Snow",
+  age: "2 years",
+  breed: "Pomeranian",
+  image_url: "https://res.cloudinary.com/dnocv6uwb/image/upload/v1609370267/dakota-and-lennon-square-compressed_hoenfo.jpg"
+)
+```
+
+Then leave off a keyword:
+
+```rb
+@lennon = Dog.new(
+  name: "Lennon Snow",
+  age: "2 years",
+  breed: "Pomeranian"
+)
+```
+
+Then let's say we wanted to add favorite_treats as an option upon initialization
+```rb
+@lennon = Dog.new(
+  name: "Lennon Snow",
+  age: "2 years",
+  breed: "Pomeranian",
+  image_url: "https://res.cloudinary.com/dnocv6uwb/image/upload/v1609370267/dakota-and-lennon-square-compressed_hoenfo.jpg",
+  favorite_treats: "Apples, Carrots, and Cheese!"
+)
+```
+CODE
+
+Pry.start

@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+require "bundler/setup"
+Bundler.require(:default)
+
+class Dog 
+  attr_accessor :name, :age, :breed, :image_url
+  def initialize(attributes = {})
+    attributes.each do |attr, value|
+      self.send("#{attr}=", value) 
+    end
+  end
+end
+
+puts <<-CODE
+1. try this:
+@lennon = Dog.new(
+  name: "Lennon Snow",
+  age: "2 years",
+  breed: "Pomeranian",
+  image_url: "https://res.cloudinary.com/dnocv6uwb/image/upload/v1609370267/dakota-and-lennon-square-compressed_hoenfo.jpg"
+)
+
+2. Next try this:
+Dog.new(name: "Memphis")
+
+3. Finally this:
+Dog.new(favorite_treats: "Cheese!!!")
+CODE
+
+Pry.start

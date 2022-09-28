@@ -36,8 +36,8 @@ end
   
   # define a method `list_dogs` that will iterate over an array of
   # dog hashes and call print_dog on each one.
-def list_dogs 
-  $dogs.each do |dog| 
+def list_dogs(dogs)
+  dogs.each do |dog| 
     dog.print
   end
   nil
@@ -63,9 +63,7 @@ def add_dog(dogs)
   puts "What's the Dog's Image Url?  "
   image_url = ask_for_input
 
- dog = Dog.new(name, age, breed, image_url)
-
-  dogs << dog
+  dog = Dog.create(name: name, age: age, breed: breed, image_url: image_url)
   dog
 end
 
@@ -78,32 +76,38 @@ def handle_choice
   user_input = ask_for_input
 
   if user_input == "1"
-    list_dogs
+    list_dogs(Dog.all)
   elsif user_input == "2"
-    add_dog($dogs)
+    add_dog(Dog.all)
   elsif user_input == "3"
-    feed_dog($dogs)
+    feed_dog(Dog.all)
   elsif user_input == "4"
-    walk_dog($dogs)
-  elsif choice == "5"
+    walk_dog(Dog.all)
+  elsif user_input == "5"
     # ✅ list dogs that need walking
-
-  elsif choice == "6"
+    list_dogs(need_walking_list(Dog.all))
+  elsif user_input == "6"
     # ✅ list dogs that are hungry
+    list_dogs(need_food_list(Dog.all))
   else
     system('clear')
     puts "I didn't recognizer your command try again".red
   end
 end
 
-# ✅ Add a helper method `choose_dog_from_collection` that will:
-#  - accept an array of dog instances as an argument
-#  - print a numbered list (starting from 1) of each dog's name (breed) 
-#    using .each_with_index
-# https://ruby-doc.org/core-2.7.4/Enumerable.html#method-i-each_with_index
-#  - ask the user to choose a number matching the dog they want to interact with
-#  - return the dog instance corresponding to the choice they made
-#  - ask the user to choose again if their choice didn't match a dog
+def need_walking_list(dogs)
+  dogs.filter do |dog|
+    dog.needs_a_walk?
+  end
+  # dogs.filter(&:needs_a_walk?) Shorthand for what you see above
+end
+
+def need_food_list(dogs)
+  dogs.filter do |dog|
+    dog.needs_a_meal?
+  end
+  # dogs.filter(&:needs_a_walk?) Shorthand for what you see above
+end
 
 def choose_dog_from_collection(dogs)
   dogs.each_with_index do |dog, index|
