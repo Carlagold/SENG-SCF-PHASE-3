@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_05_004159) do
+ActiveRecord::Schema.define(version: 2022_10_05_005851) do
 
   create_table "dogs", force: :cascade do |t|
     t.string "name"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2022_10_05_004159) do
   create_table "feedings", force: :cascade do |t|
     t.datetime "time"
     t.integer "dog_id"
+    t.string "name"
     t.index ["dog_id"], name: "index_feedings_on_dog_id"
   end
 

@@ -1,11 +1,9 @@
 class Dog
- 
   # Class methods will be defined above initialize by convention
-  # and instance methods will be defined below initialize
+  # and instance   methods will be defined below initialize
 
-  # ✅ We want our Dog class to store all of the Dogs we will save
+  # ✅ We want our Dog class to store all of the Dogs we will 
     @@all = []
-
 
   # ✅ We want to be able to access the current state of the stored (saved) dogs
 
@@ -18,8 +16,6 @@ class Dog
   
   
   # ✅ We want to be able to view all dogs that are hungry
-  
-  
   def self.create(attributes)
     self.new(attributes).save
   end
@@ -40,7 +36,7 @@ class Dog
 
     
     # ✅ We want to be able to save created instances to our stored colletion after we have created them with .new
-    def save 
+    def save
       @@all << self
       self
     end
