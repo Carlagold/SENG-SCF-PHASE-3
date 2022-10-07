@@ -1,6 +1,7 @@
 class Dog < ActiveRecord::Base
   # ✅ Ensure a many to many relationship between dogs and walks
-  has_many :walks
+  has_many :dog_walks
+  has_many :walks, through: :dog_walks
   has_many :feedings
 
   # Class methods will be defined above instance methods by convention
@@ -9,19 +10,24 @@ class Dog < ActiveRecord::Base
   # ✅ Refactor: Use AR Query methods to return hungry dogs
   # return all of the dogs who are hungry
   def self.hungry
-    self.all.filter do |dog|
-      dog.hungry?
-    end
+    self.includes(:feedings).where(feedings: {
+      time: 6.hours.ago..Time.now
+    })
   end
   
   # ✅ Refactor: Use AR query methods to return restless dogs
   # return all of the dogs who need a walk
   def self.needs_walking
-    self.all.filter do |dog|
-      dog.needs_a_walk?
-    end
+    dog_ids = self.includes(:walks).where(walks: {
+      time: 6.hours.ago..Time.now
+    }).ids
+    self.where.not(id: dog_ids)
   end
   
+  def last_walked_at 
+    Dog.first.walks.order(time: :desc).first&.time
+  end
+
 
   # the age method calculates a dog's age based on their birthdate
   def age
