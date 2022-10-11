@@ -3,10 +3,14 @@
 puts "Deleting User/Bank data..."
 User.destroy_all
 Bank.destroy_all
+Account.destroy_all
 
 puts "Creating users..."
 joe_shmoe = User.create(name: "Joe Schmoe", country_of_residence: "UK")
 jane_doe = User.create(name: "Jane Doe", country_of_residence: "USA")
+john_doe = User.create(name: "John Doe", country_of_residence: "USA")
+
+puts "Created #{User.count} Users"
 
 puts "Creating banks..."
 
@@ -20,7 +24,7 @@ cm_bank = Bank.create(name: "CM Bank", market_capitalization: 204110000000, coun
 morgan_stanley = Bank.create(name: "Morgan Stanley", market_capitalization: 181280000000, country: "USA")
 agricultural_bank_of_china = Bank.create(name: "Agricultural Bank of China", market_capitalization: 155140000000, country: "China")
 wells_fargo = Bank.create(name: "Wells Fargo", market_capitalization: 194600000000, country: "USA")
-
+puts "Created #{Bank.count} Banks"
 
 puts "Creating Accounts..."
 # ***********************************************************
@@ -31,5 +35,163 @@ puts "Creating Accounts..."
 # Create accounts Here
 
 # ***********************************************************
+# t.float "balance"
+# t.string "label"
+# t.string "account_type"
+# t.integer "user_id"
+# t.integer "bank_id"
+account_one = Account.create(
+    balance: 1000.0,
+    label: "Joe Schmoe's Account",
+    account_type: "Checking",
+    user_id: joe_shmoe.id,
+    bank_id: jp_morgan_chase.id
+)
+
+Account.create(
+    balance: 5000.0,
+    label: "Joe Schmoe's Account",
+    account_type: "Checking",
+    user_id: joe_shmoe.id,
+    bank_id: royal_bank_of_canada.id
+)
+Account.create(
+    balance: 3000.0,
+    label: "Jane Doe's Account",
+    account_type: "Checking",
+    user_id: jane_doe.id,
+    bank_id: icbc.id
+)
+
+Account.create(
+    balance: 9000.0,
+    label: "Jane Doe's Account",
+    account_type: "Checking",
+    user_id: jane_doe.id,
+    bank_id: bank_of_america.id
+)
+Account.create(
+    balance: 10000000.0,
+    label: "John Doe's Fake Account",
+    account_type: "Checking",
+    user_id: john_doe.id,
+    bank_id: bank_of_america.id
+)
+Account.create(
+    balance: 10000000.0,
+    label: "John Doe's Fake Account",
+    account_type: "Checking",
+    user_id: john_doe.id,
+    bank_id: bank_of_america.id
+)
+Account.create(
+    balance: 10000000.0,
+    label: "John Doe's Fake Account",
+    account_type: "Checking",
+    user_id: john_doe.id,
+    bank_id: bank_of_america.id
+)
+Account.create(
+    balance: 10000000.0,
+    label: "John Doe's Fake Account",
+    account_type: "Checking",
+    user_id: john_doe.id,
+    bank_id: bank_of_america.id
+)
+Account.create(
+    balance: 10000000.0,
+    label: "John Doe's Fake Account",
+    account_type: "Checking",
+    user_id: john_doe.id,
+    bank_id: bank_of_america.id
+)
+Account.create(
+    balance: 10000000.0,
+    label: "John Doe's Fake Account",
+    account_type: "Checking",
+    user_id: john_doe.id,
+    bank_id: bank_of_america.id
+)
+Account.create(
+    balance: 10000000.0,
+    label: "John Doe's Fake Account",
+    account_type: "Checking",
+    user_id: john_doe.id,
+    bank_id: bank_of_america.id
+)
+Account.create(
+    balance: 10000000.0,
+    label: "John Doe's Fake Account",
+    account_type: "Checking",
+    user_id: john_doe.id,
+    bank_id: bank_of_america.id
+)
+Account.create(
+    balance: 10000000.0,
+    label: "John Doe's Fake Account",
+    account_type: "Checking",
+    user_id: john_doe.id,
+    bank_id: bank_of_america.id
+)
+Account.create(
+    balance: 10000000.0,
+    label: "John Doe's Fake Account",
+    account_type: "Checking",
+    user_id: john_doe.id,
+    bank_id: bank_of_america.id
+)
+Account.create(
+    balance: 10000000.0,
+    label: "John Doe's Fake Account",
+    account_type: "Checking",
+    user_id: john_doe.id,
+    bank_id: bank_of_america.id
+)
+Account.create(
+    balance: 10000000.0,
+    label: "John Doe's Fake Account",
+    account_type: "Checking",
+    user_id: john_doe.id,
+    bank_id: bank_of_america.id
+)
+Account.create(
+    balance: 10000000.0,
+    label: "John Doe's Fake Account",
+    account_type: "Checking",
+    user_id: john_doe.id,
+    bank_id: citigroup.id
+)
+Account.create(
+    balance: 10000000.0,
+    label: "John Doe's Fake Account",
+    account_type: "Checking",
+    user_id: john_doe.id,
+    bank_id: jp_morgan_chase.id
+)
+Account.create(
+    balance: 10000000.0,
+    label: "John Doe's Fake Account",
+    account_type: "Checking",
+    user_id: john_doe.id,
+    bank_id: bank_of_america.id
+)
+Account.create(
+    balance: 10000000.0,
+    label: "John Doe's Fake Account",
+    account_type: "Checking",
+    user_id: john_doe.id,
+    bank_id: icbc.id
+)
+
+Account.create(
+    balance: 6000.0,
+    label: "John Doe's Fake Account",
+    account_type: "Checking",
+    user_id: john_doe.id,
+    bank_id: morgan_stanley.id
+)
+
+
+puts "Created #{Account.count} Accounts"
 
 puts "Seeding done!"
