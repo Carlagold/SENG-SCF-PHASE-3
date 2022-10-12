@@ -2,9 +2,12 @@ class Dog < ActiveRecord::Base
   has_many :dog_walks, dependent: :destroy
   has_many :walks, through: :dog_walks
 
-  def self.by_breed(breed)
-    self.where(breed: breed)
-  end
+  scope :by_breed, -> (breed) { where(breed: breed)}
+
+
+  # def self.by_breed(breed)
+  #   self.where(breed: breed)
+  # end
 
   def age
     return nil if self.birthdate.nil?
