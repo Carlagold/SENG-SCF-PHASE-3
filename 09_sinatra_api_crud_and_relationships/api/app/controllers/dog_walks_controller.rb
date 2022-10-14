@@ -2,17 +2,30 @@ class DogWalksController < ApplicationController
   
   # ✅ we want to be able to create dog_walks through the API
   post "/dog_walks" do 
-    
+    dog_walk = DogWalk.create(dog_walk_params)
+    options = get_dog_walk_json_config()
+    dog_walk.to_json(options)
+
   end
 
   # ✅ we want to be able to update dog_walks through the API
   patch "/dog_walks/:id" do
+    dog_walk = DogWalk.find_by(id: params[:id])
+    
+    return status 404 if dog_walk.nil?
+    
+    dog_walk.update(dog_walk_params)
+    
+    options = get_dog_walk_json_config()
+    dog_walk.to_json(options)
     
   end
-
+  
   # ✅ we want to be able to delete dog_walks through the API
   delete "/dog_walks/:id" do
-   
+    dog_walk = DogWalk.find_by(id: params[:id])
+    dog_walk.destroy
+    status 204
   end
 
   private 
